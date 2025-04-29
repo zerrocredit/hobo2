@@ -2,40 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flash Game</title>
     <style>
-        body, html {
+        html, body {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden;
+            background: black;
         }
         #game {
-            position: fixed;
-            top: 0;
-            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        ruffle-player {
             width: 100%;
             height: 100%;
+            display: block;
         }
     </style>
 </head>
 <body>
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-    <div id="game"></div>
-    <script>
-        window.addEventListener("load", (event) => {
-            const ruffle = window.RufflePlayer.newest();
-            const player = ruffle.createPlayer();
-            document.getElementById("game").appendChild(player);
-            player.load("hobo2.swf");
+    <div id="game">
+        <ruffle-player src="hobo2.swf"></ruffle-player>
+    </div>
 
-            // Ensure player fills the whole screen
-            player.style.position = "absolute";
-            player.style.top = "0";
-            player.style.left = "0";
-            player.style.width = "100%";
-            player.style.height = "100%";
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("DOMContentLoaded", () => {
+            const ruffle = window.RufflePlayer.newest();
+            ruffle.configure({ autoplay: "on" });
+            const container = document.getElementById("game");
+            const player = document.createElement("ruffle-player");
+            player.setAttribute("src", "hobo2.swf");
+            container.innerHTML = ''; // Clear old content
+            container.appendChild(player);
         });
     </script>
 </body>
