@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="game">
-        <ruffle-player src="Hobo 2 - Prison Brawl.swf"></ruffle-player>
+        <!-- The player will be created by JavaScript -->
     </div>
 
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
@@ -34,8 +34,7 @@
             ruffle.configure({ autoplay: "on" });
             const container = document.getElementById("game");
             const player = document.createElement("ruffle-player");
-            player.setAttribute("src", "hobo2.swf");
-            container.innerHTML = ''; // Clear old content
+            player.setAttribute("src", "Hobo 2 - Prison Brawl.swf"); // MATCH your real filename here
             container.appendChild(player);
         });
     </script>
